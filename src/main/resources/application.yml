@@ -1,0 +1,25 @@
+server:
+  port: 8010
+
+spring:
+  application:
+    name: test
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          mywebclient:
+            client-id: photo-app-we-client
+            client-secret: VsRg1F4xFgfwjS9oVjFskE1VRMfUysAt
+            scope: openid, profile, roles
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8087/login/oauth2/code/mywebclient
+        provider:
+          mywebclient:
+            authorization-uri: http://localhost:8080/realms/auth-testing/protocol/openid-connect/auth
+            jwk-set-uri: http://localhost:8080/realms/auth-testing/protocol/openid-connect/certs
+            token-uri: http://localhost:8080/realms/auth-testing/protocol/openid-connect/token
+            user-info-uri: http://localhost:8080/realms/auth-testing/protocol/openid-connect/userinfo
+            user-name-attribute : preferred_username

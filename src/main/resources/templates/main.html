@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>Albums Page</h1>
+    <div th:if="${albums.empty}">
+        <div>No album found!</div>
+    </div>
+
+    <div th:each="album : ${albums}">
+        <p>[[${album.albumTitle}]]</p>
+    </div>
+</body>
+</html>
