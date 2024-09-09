@@ -15,7 +15,7 @@ spring:
             client-secret: VsRg1F4xFgfwjS9oVjFskE1VRMfUysAt
             scope: openid, profile, roles
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8087/login/oauth2/code/mywebclient
+            redirect-uri: http://localhost:8010/login/oauth2/code/mywebclient
         provider:
           mywebclient:
             authorization-uri: http://localhost:8080/realms/auth-testing/protocol/openid-connect/auth

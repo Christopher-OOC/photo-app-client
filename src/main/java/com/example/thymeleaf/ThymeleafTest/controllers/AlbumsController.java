@@ -1,6 +1,9 @@
 package com.example.thymeleaf.ThymeleafTest.controllers;
 
 import com.example.thymeleaf.ThymeleafTest.response.AlbumRest;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.OidcIdToken;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +14,14 @@ import java.util.Arrays;
 public class AlbumsController {
 
     @GetMapping("/albums")
-    public String getAlbums(Model model) {
+    public String getAlbums(Model model, @AuthenticationPrincipal OidcUser principal) {
+
+        System.out.println("Principal = " + principal);
+
+        OidcIdToken idToken = principal.getIdToken();
+        String tokenValue = idToken.getTokenValue();
+        System.out.println("Token Value = " + tokenValue);
+
 
         AlbumRest album1 = new AlbumRest();
         album1.setAlbumId("albumOne");
