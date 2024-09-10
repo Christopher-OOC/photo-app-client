@@ -21,6 +21,7 @@ public class AlbumsController {
         OidcIdToken idToken = principal.getIdToken();
         String tokenValue = idToken.getTokenValue();
         System.out.println("Token Value = " + tokenValue);
+        System.out.println("Authorities Value = " + principal.getAuthorities());
 
 
         AlbumRest album1 = new AlbumRest();
