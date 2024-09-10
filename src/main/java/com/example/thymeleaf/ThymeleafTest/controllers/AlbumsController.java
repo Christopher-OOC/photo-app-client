@@ -8,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.OAuth2AuthorizationException;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
@@ -33,7 +32,7 @@ public class AlbumsController {
                 oauthToken.getName());
 
         String jwtAccessToken = oAuth2Client.getAccessToken().getTokenValue();
-
+        System.out.println("jtwAccessToken = " + jwtAccessToken);
 
         System.out.println("Principal = " + principal);
 
@@ -41,7 +40,6 @@ public class AlbumsController {
         String tokenValue = idToken.getTokenValue();
         System.out.println("Token Value = " + tokenValue);
         System.out.println("Authorities Value = " + principal.getAuthorities());
-
 
         AlbumRest album1 = new AlbumRest();
         album1.setAlbumId("albumOne");
