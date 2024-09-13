@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example.thymeleaf</groupId>
-	<artifactId>photo-app-web-client</artifactId>
+	<artifactId>PhotoAppResourceServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ThymeleafTest</name>
 	<description>Demo project for Spring Boot</description>

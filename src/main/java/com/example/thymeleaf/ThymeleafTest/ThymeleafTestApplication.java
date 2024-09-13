@@ -31,6 +31,8 @@ public class ThymeleafTestApplication {
 				oAuth2AuthorizedClientRepository
 		);
 
+		/// System.out.println("nbfmfnmdmf");
+
 		oauht2.setDefaultOAuth2AuthorizedClient(true);
 
 		return WebClient.builder().apply(oauht2.oauth2Configuration()).build();

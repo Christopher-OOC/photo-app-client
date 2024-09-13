@@ -41,32 +41,38 @@ public class AlbumsController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
-
-        OAuth2AuthorizedClient oAuth2Client = auth2ClientService.loadAuthorizedClient(oauthToken.getAuthorizedClientRegistrationId(),
-                oauthToken.getName());
-
-        String jwtAccessToken = oAuth2Client.getAccessToken().getTokenValue();
-        System.out.println("jtwAccessToken = " + jwtAccessToken);
-
-        System.out.println("Principal = " + principal);
-
-        OidcIdToken idToken = principal.getIdToken();
-        String tokenValue = idToken.getTokenValue();
-        System.out.println("Token Value = " + tokenValue);
-        System.out.println("Authorities Value = " + principal.getAuthorities());
+//
+//        OAuth2AuthorizedClient oAuth2Client = auth2ClientService.loadAuthorizedClient(oauthToken.getAuthorizedClientRegistrationId(),
+//                oauthToken.getName());
+//
+//        String jwtAccessToken = oAuth2Client.getAccessToken().getTokenValue();
+//        System.out.println("jtwAccessToken = " + jwtAccessToken);
+//
+//        System.out.println("Principal = " + principal);
+//
+//        OidcIdToken idToken = principal.getIdToken();
+//        String tokenValue = idToken.getTokenValue();
+//        System.out.println("Token Value = " + tokenValue);
+//        System.out.println("Authorities Value = " + principal.getAuthorities());
 
 
         String url = "http://localhost:8082/albums";
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer " + jwtAccessToken);
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Authorization", "Bearer " + jwtAccessToken);
 
-        HttpEntity<List<AlbumRest>> entity = new HttpEntity<>(headers);
+//        HttpEntity<List<AlbumRest>> entity = new HttpEntity<>(headers);
+//
+//        ResponseEntity<List<AlbumRest>> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<>() {
+//        });
 
-        ResponseEntity<List<AlbumRest>> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<>() {
-        });
+        List<AlbumRest> albums = webClient
+                .get()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<AlbumRest>>() {})
+                .block();
 
-        List<AlbumRest> albums = responseEntity.getBody();
 
           model.addAttribute("albums", albums);
 
